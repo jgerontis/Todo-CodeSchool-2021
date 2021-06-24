@@ -59,7 +59,7 @@ app.get("/todo", (req, res) => {
     }
     // success!!! return all the todos
     res.status(200).json(todos);
-    fileManager.logAllRead();
+    // fileManager.logAllRead();
   });
 });
 
@@ -88,7 +88,7 @@ app.get("/todo/:id", function (req, res) {
     } else {
       // success!!!! return the todo
       res.status(200).json(todo);
-      fileManager.logTodoRead(todo);
+      // fileManager.logTodoRead(todo);
     }
   });
 });
@@ -119,7 +119,7 @@ app.post("/todo", function (req, res) {
     }
     // success!!! return the todo
     res.status(201).json(todo);
-    fileManager.logTodoCreate(todo);
+    // fileManager.logTodoCreate(todo);
   });
 });
 
@@ -144,7 +144,7 @@ app.delete("/todo/:id", function (req, res) {
       });
     } else {
       res.status(200).json(todo);
-      fileManager.logTodoDeleted(todo);
+      // fileManager.logTodoDeleted(todo);
     }
   });
 });
@@ -192,7 +192,7 @@ app.patch("/todo/:id", function (req, res) {
         });
       } else {
         res.status(200).json(updateOneResponse);
-        fileManager.logTodoUpdate(req.params.id);
+        // fileManager.logTodoUpdate(req.params.id);
       }
     }
   );
@@ -228,7 +228,7 @@ app.put("/todo/:id", function (req, res) {
         });
       } else {
         res.status(200).json(updateOneResponse);
-        fileManager.logTodoUpdate(req.params.id);
+        // fileManager.logTodoUpdate(req.params.id);
       }
     }
   );
@@ -244,7 +244,7 @@ function syncLogAndDB() {
     }
     // success!!! return all the todos
     todos.forEach((todo) => {
-      fileManager.logTodoCreate(todo);
+      // fileManager.logTodoCreate(todo);
     });
   });
 }
