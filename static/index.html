@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Todo App</h1>
+        <div class="input_area">
+            <h2>Create Todo</h2>
+            <label>Name</label>
+            <input type="text" v-model="new_todo_name" placeholder="Enter a todo name"><br>
+            <label>Description</label>
+            <textarea v-model="new_todo_description" placeholder="Description"></textarea><br>
+            <label>Deadline</label>
+            <input type="date" v-model="new_todo_deadline" placeholder="Deadline Date"><br>
+            <button v-on:click="addNewTodo()">Add</button>
+        </div>
+        <h2>Your Todo List</h2>
+        <ul id="todos">
+            <li class="todo" v-for="(todo) in todos">
+                <input class="checkbox" type="checkbox" v-model="todo.done" v-on:change="saveTodoDone(todo)">
+
+                <div v-if="todo.editing">
+                    <input type= "text" v-model= "todo.name">
+                    <input type= "text" v-model= "todo.description">
+                    <input type= "text" v-model= "todo.deadline">
+                    <button v-on:click="saveTodo(todo)">Save</button>
+                </div>
+
+                <div v-else v-bind:class="{ done: todo.done }">
+                    <p> {{ todo.name }} </p><br>
+                    <p> {{ todo.description }} </p><br>
+                    <p> {{ todo.deadline }} </p><br>
+                    <button v-on:click="editTodo(todo)">Edit</button>
+                </div>
+                
+                <button v-on:click="deleteTodo(todo._id)">Delete</button>
+
+            </li>
+        </ul>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
